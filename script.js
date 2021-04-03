@@ -7,44 +7,44 @@ var playerHighScores = [];
 var highScore;
 var quizArray = [
     {
-    question: "1",
-    answer1: "1.",
-    answer2: "2.",
-    answer3: "3.",
-    answer4: "4.",
-    correctAnswer: "3."
+    question: "What is the correct syntax to close the <title> element?",
+    answer1: "1. <!title>",
+    answer2: "2. <?title>",
+    answer3: "3. </title>",
+    answer4: "4. <endtitle>",
+    correctAnswer: "3. </title>"
     },
     {
-    question: "2",
-    answer1: "1.",
-    answer2: "2.",
-    answer3: "3.",
-    answer4: "4.",
-    correctAnswer: "4."
+    question: "How do you add a message to a git commit?",
+    answer1: "1. Close your eyes and hope it commits",
+    answer2: "2. Press save on GitHub",
+    answer3: "3. Upload and attach a file to git commit",
+    answer4: "4. Add -m 'message' at the end of git commit",
+    correctAnswer: "4. Add -m 'message' at the end of git commit"
     },
     {
-    question: "3",
-    answer1: "1.",
-    answer2: "2.",
-    answer3: "3.",
-    answer4: "4.",
-    correctAnswer: "2."
+    question: "What's the first thing you should do before writing a single line of HTML code?",
+    answer1: "1. Write all your CSS code",
+    answer2: "2. Sketch out what the webpage should look like",
+    answer3: "3. Download the latest version of VS Code",
+    answer4: "4. Publish your webpage on GitHub",
+    correctAnswer: "2. Sketch out what the webpage should look like"
     },
     {
-    question: "4",
-    answer1: "1.",
-    answer2: "2.",
-    answer3: "3.",
-    answer4: "4.",
-    correctAnswer: "4."
+    question: "What is the purpose of the alt attribut for images?",
+    answer1: "1. To makd the image load faster",
+    answer2: "2. To make it easier to style the image with CSS",
+    answer3: "3. To prevent search engines for indexing the image",
+    answer4: "4. To provide context for the image",
+    correctAnswer: "4. To provide context for the image"
     },
     {
-    question: "5",
-    answer1: "1.",
-    answer2: "2.",
-    answer3: "3.",
-    answer4: "4.",
-    correctAnswer: "1."
+    question: "How do you create a flexbox?",
+    answer1: "1. display: flex;",
+    answer2: "2. display: flexbox;",
+    answer3: "3. display: box;",
+    answer4: "4. display: create flexbox;",
+    correctAnswer: "1. display: flex;"
     },
 ];
 var showHighScoresButton = document.querySelector("#view-highscores");
@@ -73,6 +73,65 @@ function getHighScoresFromStorage() {
     else {
         playerHighScores = [];
     }
+};
+
+function saveHighScore() {
+    highScore = {
+        playerIntials: initialsInput.value,
+        playerScore: score
+    }
+
+    if (playerHighScores == null) {
+        playerHighScores = [{playerIntials: initialsInput.value, playerScore: score}];
+    }
+    else {
+        playerHighScores.push(highScore);
+    }
+
+    localStorage.setItem("highscores", JSON.stringify(playerHighScores));
+};
+
+function showHighScores() {
+    highScoresDiv.style.display = "block";
+    questionText.textContent = "High Scores";
+    answerText.style.display = "none";
+    showHighScoresButton.style.visibility = "hidden";
+
+    var tb1 = document.createElement("table");
+    var tb1Body = document.createElement("tbody");
+    var row, cell1, cell2, cell1Text, cell2Text;
+
+    if (playerHighScores != null) {
+        for (i = 0; i < playerHighScores.length; i++) {
+            row = document.createElement("tr");
+            cell1 = document.createElement("td");
+            cell1Text = document.createTextNode(playerHighScores[i].playerIntials);
+            cell2 = document.createElement("td");
+            cell2Text = document.createTextNode(playerHighScores[i].playerScore);
+            
+            cell1.appendChild(cell1Text);
+            row.appendChild(cell1);
+            cell2.appendChild(cell2Text);
+            row.appendChild(cell2);
+            tb1Body.appendChild(row);
+
+            cell2.style.textAlign = "right";
+            tb1.style.marginBottom = "20px";
+        }
+        tb1.appendChild(tb1Body);
+        highScoresDiv.appendChild(tb1);
+        cell1.style.columnWidth = "200px";
+        cell2.style.columnWidth = "20px";
+        tb1.style.fontSize = "20px";
+        tb1.setAttribute("id", "highscore-table");
+    }
+    else if (document.querySelector("#high-scores-div").innerHTML != null) {
+        document.querySelector("#high-scores-div").innerHTML = "";
+    }
+
+    eraseHighScoresButton.style.display = "block";
+
+    startButtonTag.style.display = "block";
 };
 
 function loadGame() {
@@ -199,61 +258,111 @@ function startGameTimer() {
     }, 1000);
 };
 
-function saveHighScore() {
-    highScore = {
-        playerIntials: initialsInput.value,
-        playerScore: score
-    }
 
-    if (playerHighScores == null) {
-        playerHighScores = [{playerIntials: initialsInput.value, playerScore: score}];
-    }
-    else {
-        playerHighScores.push(highScore);
-    }
 
-    localStorage.setItem("highscores", JSON.stringify(playerHighScores));
-};
+loadGame();
 
-function showHighScores() {
-    highScoresDiv.style.display = "block";
-    questionText.textContent = "High Scores";
-    answerText.style.display = "none";
-    showHighScoresButton.style.visibility = "hidden";
+//EventListeners
+showHighScoresButton.addEventListener("click", function() {
+    showHighScores();
+});
 
-    var tb1 = document.createElement("table");
-    var tb1Body = document.createElement("tbody");
-    var row, cell1, cell2, cell1Text, cell2Text;
-
-    if (playerHighScores != null) {
-        for (i = 0; i < playerHighScores.length; i++) {
-            row = document.createElement("tr");
-            cell1 = document.createElement("td");
-            cell1Text = document.createTextNode(playerHighScores[i].playerIntials);
-            cell2 = document.createElement("td");
-            cell2Text = document.createTextNode(playerHighScores[i].playerScore);
-            
-            cell1.appendChild(cell1Text);
-            row.appendChild(cell1);
-            cell2.appendChild(cell2Text);
-            row.appendChild(cell2);
-            tb1Body.appendChild(row);
-
-            cell2.style.textAlign = "right";
-            tb1.style.marginBottom = "20px";
-        }
-        tb1.appendChild(tb1Body);
-        highScoresDiv.appendChild(tb1);
-        cell1.style.columnWidth = "200px";
-        cell2.style.columnWidth = "20px";
-        tb1.style.fontSize = "20px";
-        tb1.setAttribute("id", "highscore-table");
-    }
-    else if (document.querySelector("#high-scores-div").innerHTML != null) {
+eraseHighScoresButton.addEventListener("click", function() {
+    window.localStorage.clear();
+    playerHighScores = null;
+    
+    if (document.querySelector("#high-scores-div").innerHTML != null) {
         document.querySelector("#high-scores-div").innerHTML = "";
     }
 
-    eraseHighScoresButton.style.display = "block";
+    showHighScores();
+});
 
-    startButtonTag.style.display = "block";
-};
+initialsInputButton.addEventListener("click", function() {
+    saveHighScore();
+
+    questionText.textContent = "";
+    answerText.style.display = "none";
+    answerText.textContent = "";
+
+    initialsLabel.style.display = "none";
+    initialsInput.style.display = "none";
+    initialsInput.textContent = "";
+    initialsInputButton.style.display = "none";
+
+    showHighScores();
+});
+
+answer1Button.addEventListener("click", function() {
+    var correctAnswer = false;
+
+    if (chosenQuestion.correctAnswer === chosenQuestion.answer1) {
+        correctAnswer = true;
+        score = score + 10;
+    }
+    else {
+        correctAnswer = false;
+        gameTimer = gameTimer - 10;
+    }
+    displayAnswerResult(correctAnswer);
+});
+
+answer2Button.addEventListener("click", function() {
+    var correctAnswer = false;
+
+    if (chosenQuestion.correctAnswer === chosenQuestion.answer2) {
+        correctAnswer = true;
+        score = score + 10;
+    }
+    else {
+        correctAnswer = false;
+        gameTimer = gameTimer - 10;
+    }
+    displayAnswerResult(correctAnswer);
+});
+
+answer3Button.addEventListener("click", function() {
+    var correctAnswer = false;
+
+    if (chosenQuestion.correctAnswer === chosenQuestion.answer3) {
+        correctAnswer = true;
+        score = score + 10;
+    }
+    else {
+        correctAnswer = false;
+        gameTimer = gameTimer - 10;
+    }
+    displayAnswerResult(correctAnswer);
+});
+
+answer4Button.addEventListener("click", function() {
+    var correctAnswer = false;
+
+    if (chosenQuestion.correctAnswer === chosenQuestion.answer4) {
+        correctAnswer = true;
+        score = score + 10;
+    }
+    else {
+        correctAnswer = false;
+        gameTimer = gameTimer - 10;
+    }
+    displayAnswerResult(correctAnswer);
+});
+
+document.querySelector("#start-button").addEventListener("click", function() {
+    if (gameOverFlag) {
+        location.reload();
+    }
+
+    if (document.querySelector("#high-scores-div").innerHTML != null) {
+        document.querySelector("#high-scores-div").innerHTML = "";
+    }
+
+    gameTimer = 30;
+    startGameTimer();
+    startQuiz();
+});
+
+
+
+
