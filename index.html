@@ -41,11 +41,28 @@
     </header>
 
     <main>
-        <section class="question-wrapper">
-            <h2 class="question">A Question is going to be added soon!</h2>
-            <ul class="answer-list">
-                <li class="answer">An answer is going to be added soon!</li>
-            </ul>
+        <section class="question-wrapper" id="question-container">
+            <h2 class="question" id="question-text"></h2> 
+        </section>
+        <section class="answer-wrapper" id="answers-container">
+            <p id="answer-text"></p>
+            <div id="hight-scores-div"></div>
+            <button class="answer-button" id="answer1-button"></button>
+            <button class="answer-button" id="answer2-button"></button>
+            <button class="answer-button" id="answer3-button"></button>
+            <button class="answer-button" id="answer4-button"></button>
+        </section>
+        <section class="result-wrapper" id="result-container">
+            <label for="initials-input" id="initials-label">Enter Initials:</label>
+            <input type="text" id="initials-input">
+            <button id="initials-input-button">Submit</button>
+            <button id="show-highscores-button">Show High Scores</button>
+            <button id="erase-highscores-button">Erase High Scores</button>
+            <button id="start-button">Start Quiz</button>
+            <p id="answer-result"></p>
+        </section>
+        <section class="game-over-wrapper" id="game-over-container">
+            <h3 id="game-over-tag"></h3>
         </section>
     </main>
     
