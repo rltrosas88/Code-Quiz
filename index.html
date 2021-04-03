@@ -33,36 +33,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <header>
-        <button class="btn" id="save-high-score">View High Score</button>
+        <a href="#" id="view-highscores">View High Scores</a>
+        <p id="game-timer">"game timer"</p>
     </header>
 
     <main>
-        <section class="question-wrapper" id="question-container">
-            <h2 class="question" id="question-text"></h2> 
+        <section class="question-wrapper section" id="question-container">
+            <h2 class="questions" id="question-text">"questions"</h2> 
         </section>
-        <section class="answer-wrapper" id="answers-container">
-            <p id="answer-text"></p>
-            <div id="hight-scores-div"></div>
-            <button class="answer-button" id="answer1-button"></button>
-            <button class="answer-button" id="answer2-button"></button>
-            <button class="answer-button" id="answer3-button"></button>
-            <button class="answer-button" id="answer4-button"></button>
+        <section class="answer-wrapper section" id="answers-container">
+            <p id="answer-text">"answer text"</p>
+            <div id="high-scores-div">"high scores div"</div>
+            <button class="answer-button" id="answer1-button">"answer1"</button>
+            <button class="answer-button" id="answer2-button">"answer2"</button>
+            <button class="answer-button" id="answer3-button">"answer3"</button>
+            <button class="answer-button" id="answer4-button">"answer4"</button>
         </section>
-        <section class="result-wrapper" id="result-container">
+        <section class="result-wrapper section" id="result-container">
             <label for="initials-input" id="initials-label">Enter Initials:</label>
             <input type="text" id="initials-input">
             <button id="initials-input-button">Submit</button>
             <button id="show-highscores-button">Show High Scores</button>
             <button id="erase-highscores-button">Erase High Scores</button>
             <button id="start-button">Start Quiz</button>
-            <p id="answer-result"></p>
+            <p id="answer-result">"answer results"</p>
         </section>
-        <section class="game-over-wrapper" id="game-over-container">
-            <h3 id="game-over-tag"></h3>
+        <section class="game-over-wrapper section" id="game-over-container">
+            <h3 id="game-over-tag">"game over tag"</h3>
         </section>
     </main>
     
