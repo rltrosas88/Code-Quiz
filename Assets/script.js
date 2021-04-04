@@ -31,8 +31,8 @@ var quizArray = [
     correctAnswer: "2. Sketch out what the webpage should look like"
     },
     {
-    question: "What is the purpose of the alt attribut for images?",
-    answer1: "1. To makd the image load faster",
+    question: "What is the purpose of the alt attribute for images?",
+    answer1: "1. To make the image load faster",
     answer2: "2. To make it easier to style the image with CSS",
     answer3: "3. To prevent search engines for indexing the image",
     answer4: "4. To provide context for the image",
@@ -53,6 +53,7 @@ var eraseHighScoresButton = document.querySelector("#erase-highscores-button");
 var startButtonTag = document.querySelector("#start-button");
 var gameTimerTag = document.querySelector("#game-timer");
 var questionText = document.querySelector("#question-text");
+var highScoreText = document.querySelector("#high-score");
 var answerText = document.querySelector("#answer-text");
 var answer1Button = document.querySelector("#answer1-button");
 var answer2Button = document.querySelector("#answer2-button");
@@ -93,7 +94,7 @@ function saveHighScore() {
 
 function showHighScores() {
     highScoresDiv.style.display = "block";
-    questionText.textContent = "High Scores";
+    highScoreText.textContent = "High Scores";
     answerText.style.display = "none";
     showHighScoresButton.style.visibility = "hidden";
 
@@ -137,7 +138,6 @@ function showHighScores() {
 function loadGame() {
     getHighScoresFromStorage();
     questionText.textContent = "Coding Quiz Challenge";
-    answerText.textContent = "Try to answer the follwoing questions within the time"
     gameTimerTag.textContent = "Time: " + gameTimer;
 
     eraseHighScoresButton.style.display = "none";
@@ -162,7 +162,7 @@ function enterInitials() {
 
     initialsLabel.style.display = "inline";
     initialsInput.style.display = "inline";
-    initialsInputButton.style.display = "inline";
+    intialsInputButton.style.display = "inline";
 };
 
 function gameOver() {
@@ -173,7 +173,7 @@ function gameOver() {
     gameTimerTag.textContent = "Time: 0";
     gameOverTag.textContent = "Game Over!"
 
-    Var gameOverInterval = setInterval(function() {
+    var gameOverInterval = setInterval(function() {
         displayGameOverTimer--;
         if(displayGameOverTimer === 0) {
             clearInterval(gameOverInterval);
@@ -246,7 +246,7 @@ function startQuiz() {
 function startGameTimer() {
     var gameTimerInterval = setInterval(function() {
         gameTimerTag.textContent = "Time: " + gameTimer;
-        gamerTimer--;
+        gameTimer--;
 
         if (gameTimer <= 0) {
             gameTimerTag.textContent = "Time: " + gameTimer;
@@ -278,7 +278,7 @@ eraseHighScoresButton.addEventListener("click", function() {
     showHighScores();
 });
 
-initialsInputButton.addEventListener("click", function() {
+intialsInputButton.addEventListener("click", function() {
     saveHighScore();
 
     questionText.textContent = "";
@@ -288,7 +288,7 @@ initialsInputButton.addEventListener("click", function() {
     initialsLabel.style.display = "none";
     initialsInput.style.display = "none";
     initialsInput.textContent = "";
-    initialsInputButton.style.display = "none";
+    intialsInputButton.style.display = "none";
 
     showHighScores();
 });
